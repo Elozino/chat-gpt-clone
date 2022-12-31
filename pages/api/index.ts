@@ -13,11 +13,12 @@ const openai = new OpenAIApi(configuration);
 // API HANDLER
 type Data = {
   name?: string;
-  apiData?: Promise<string | undefined>;
   msg?: string;
-  message: string;
-  question: string;
-  answer?: string;
+  response?: {
+    data: {
+      choices: { text: string }[];
+    };
+  };
 };
 
 export default async function handler(
@@ -25,7 +26,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const { message } = req.body;
-  console.log({ message });
+
   if (req.method === "POST") {
     try {
       const response = await openai.createCompletion({
@@ -34,8 +35,6 @@ export default async function handler(
         max_tokens: 100,
         temperature: 0.5,
       });
-      // console.log(response);
-      // console.log({ backend: response.data.choices[0].text });
       res.status(200).json(response.data.choices[0].text);
     } catch (error) {
       console.log(error);
