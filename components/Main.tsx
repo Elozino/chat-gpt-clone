@@ -21,7 +21,7 @@ export const Main = ({ input, setInput, chatLog, setChatLog, }: IProps) => {
     e.preventDefault()
     setInput("")
     setChatLog([...chatLog, { question: `${input}`, answer: "" }])
-    const res = await fetch(`https://chat-gpt-clone-ochre.vercel.app/`, {
+    const res = await fetch(`/api`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
