@@ -2,7 +2,15 @@ import Image from 'next/image'
 import React from 'react'
 import logo from "../public/chatgpt.png"
 
-export const ChatMessage = ({ chatLog }) => {
+
+interface IProps {
+  chatLog: {
+    question: string;
+    answer: string;
+  }
+
+}
+export const ChatMessage = ({ chatLog }: IProps) => {
   return (
     <>
       <div className='bg-light p-4'>
@@ -19,7 +27,7 @@ export const ChatMessage = ({ chatLog }) => {
             <>
               <div>
                 <div className='w-10 h-10 rounded-full bg-gptBg overflow-hidden'>
-                  <Image src={logo} width={40} height={40} alt="logo"/>
+                  <Image src={logo} width={40} height={40} alt="logo" />
                 </div>
               </div>
               <p className='mt-2 text-white'>

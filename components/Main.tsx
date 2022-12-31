@@ -16,11 +16,7 @@ interface IProps {
 
 
 export const Main = ({ input, setInput, chatLog, setChatLog, }: IProps) => {
-
-
-
-
-
+  
   async function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault()
     setInput("")
