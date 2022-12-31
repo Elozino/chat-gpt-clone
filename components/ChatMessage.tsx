@@ -30,9 +30,17 @@ export const ChatMessage = ({ chatLog }: IProps) => {
                   <Image src={logo} width={40} height={40} alt="logo" />
                 </div>
               </div>
-              <p className='mt-2 text-white'>
-                {chatLog.answer}
-              </p>
+
+              {
+                chatLog.answer ?
+                  <p className='mt-2 text-white'>
+                    {chatLog.answer}
+                  </p>
+                  :
+                  <p className='mt-2 text-red-500'>
+                    You just encountered server errors
+                  </p>
+              }
             </>
           )}
         </div>
