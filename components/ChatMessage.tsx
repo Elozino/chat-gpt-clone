@@ -23,26 +23,43 @@ export const ChatMessage = ({ chatLog }: IProps) => {
       </div>
       <div className='p-4'>
         <div className='flex gap-10 w-5/6 md:w-2/3 m-auto'>
-          {chatLog.answer === "" && (
-            <>
-              <div>
-                <div className='w-10 h-10 rounded-full bg-gptBg overflow-hidden'>
-                  <Image src={logo} width={40} height={40} alt="logo" />
+          {
+            chatLog.answer == undefined ? (
+              <>
+                <div>
+                  <div className='w-10 h-10 rounded-full bg-gptBg overflow-hidden'>
+                    <Image src={logo} width={40} height={40} alt="logo" />
+                  </div>
                 </div>
-              </div>
+                <p className='mt-2 text-red-500'>
+                  You just encountered server errors
+                </p>
+              </>
+            ) : chatLog.answer == "" ? (
+              <>
+                <div>
+                  <div className='w-10 h-10 rounded-full bg-gptBg overflow-hidden'>
+                    <Image src={logo} width={40} height={40} alt="logo" />
+                  </div>
+                </div>
+                <p className='mt-2 text-white'>
+                  Loading data....
+                </p>
+              </>
+            ) : (
+              <>
+                <div>
+                  <div className='w-10 h-10 rounded-full bg-gptBg overflow-hidden'>
+                    <Image src={logo} width={40} height={40} alt="logo" />
+                  </div>
+                </div>
+                <p className='mt-2 text-white'>
+                  {chatLog.answer}
+                </p>
+              </>
+            )
+          }
 
-              {
-                chatLog.answer ?
-                  <p className='mt-2 text-white'>
-                    {chatLog.answer}
-                  </p>
-                  :
-                  <p className='mt-2 text-red-500'>
-                    You just encountered server errors
-                  </p>
-              }
-            </>
-          )}
         </div>
       </div >
     </>
