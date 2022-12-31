@@ -23,7 +23,7 @@ export const ChatMessage = ({ chatLog }: IProps) => {
       </div>
       <div className='p-4'>
         <div className='flex gap-10 w-5/6 md:w-2/3 m-auto'>
-          {chatLog.answer && (
+          {chatLog.answer === "" && (
             <>
               <div>
                 <div className='w-10 h-10 rounded-full bg-gptBg overflow-hidden'>
