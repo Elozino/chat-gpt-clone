@@ -30,8 +30,10 @@ export default async function handler(
       const response: AxiosResponse<CreateCompletionResponse> = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: message,
-        max_tokens: 100,
+        max_tokens: 3000,
         temperature: 0.5,
+        frequency_penalty: 0.5,
+        top_p: 1,
       });
       res.status(200).json(response.data.choices[0].text);
     } catch (error) {
