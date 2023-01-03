@@ -16,23 +16,27 @@ interface IProps {
 
 
 export const Main = ({ input, setInput, chatLog, setChatLog, }: IProps) => {
-  
-  async function handleSubmit(e: { preventDefault: () => void }) {
+
+  async function handleSubmit(e: {
+    target: any; preventDefault: () => void
+  }) {
     e.preventDefault()
-    setInput("")
-    setChatLog([...chatLog, { question: `${input}`, answer: "" }])
-    const res = await fetch(`/api`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: input
+    if (input !== "") {
+      setInput("")
+      setChatLog([...chatLog, { question: `${input}`, answer: "" }])
+      const res = await fetch(`/api`, {
+        method: "POST",
+        headers: {
+
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: input
+        })
       })
-    })
-    const data = await res.json()
-    console.log({ data })
-    setChatLog([...chatLog, { question: `${input}`, answer: `${data}` }])
+      const data = await res.json()
+      setChatLog([...chatLog, { question: `${input}`, answer: `${data.trim()}` }])
+    }
   }
 
 
