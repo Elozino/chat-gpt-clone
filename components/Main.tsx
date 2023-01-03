@@ -35,7 +35,7 @@ export const Main = ({ input, setInput, chatLog, setChatLog, }: IProps) => {
         })
       })
       const data = await res.json()
-      setChatLog([...chatLog, { question: `${input}`, answer: `${data.trim()}` }])
+      setChatLog([...chatLog, { question: `${input}`, answer: `${data}` }])
     }
   }
 

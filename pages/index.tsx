@@ -5,8 +5,7 @@ import { Main } from '../components/Main'
 import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
-
-interface IChatLog {
+export interface IChatLog {
   question: string,
   answer: string
 }
@@ -29,6 +28,7 @@ export default function Home() {
       <main className="flex h-screen overflow-hidden">
         <Sidebar
           clearChat={clearChat}
+          chatLog={chatLog}
         />
         <Main
           input={input}
